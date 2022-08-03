@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyStatefulWidget(),
     );
   }
 }
@@ -63,5 +63,51 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
+  }
+}
+
+// ignore: must_be_immutable
+class MyFirstWidget extends StatelessWidget {
+  static int buildCounter = 0;
+
+  const MyFirstWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    buildCounter++;
+    // ignore: avoid_print
+    print('StatelessWidget build method called $buildCounter time(s)');
+    // ignore: avoid_unnecessary_containers
+    return Container(
+      child: const Center(
+        child: Text('Hello'),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class MyStatefulWidget extends StatefulWidget {
+  static int buildCounter = 0;
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  @override
+  Widget build(BuildContext context) {
+    MyStatefulWidget.buildCounter += 1;
+    // ignore: avoid_print
+    print(
+      'StatefulWidget build method called ${MyStatefulWidget.buildCounter} time(s)',
+    );
+    // ignore: avoid_unnecessary_containers
+    return Container(
+      child: const Center(
+        child: Text('Hello'),
+      ),
+    );
   }
 }
