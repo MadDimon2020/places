@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:places/mocks.dart';
+import 'package:places/ui/screen/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
   const SightListScreen({Key? key}) : super(key: key);
@@ -8,6 +10,7 @@ class SightListScreen extends StatefulWidget {
 }
 
 class _SightListScreenState extends State<SightListScreen> {
+  final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,41 +18,23 @@ class _SightListScreenState extends State<SightListScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
         toolbarHeight: 72.0,
-        title: RichText(
-          text: const TextSpan(
-            text: 'С',
-            style: TextStyle(
-              color: Color(0xFF4CAF50),
-              fontWeight: FontWeight.bold,
-              fontSize: 32.0,
-              height: 1.125,
-            ),
-            children: [
-              TextSpan(
-                text: 'писок\n',
-                style: TextStyle(
-                  color: Color(0xFF252849),
-                ),
-              ),
-              TextSpan(
-                text: 'и',
-                style: TextStyle(
-                  color: Color(0xFFFCDD3D),
-                ),
-              ),
-              TextSpan(
-                text: 'нтересных мест',
-                style: TextStyle(
-                  color: Color(0xFF252849),
-                ),
-              ),
-            ],
+        title: const Text(
+          'Список\nинтересных мест',
+          style: TextStyle(
+            color: Color(0xFF3B3E5B),
+            fontWeight: FontWeight.bold,
+            fontSize: 32.0,
+            height: 1.125,
           ),
           textAlign: TextAlign.left,
         ),
       ),
-      body: const Center(
-        child: Text('Hello'),
+      body: Scrollbar(
+        controller: _scrollController,
+        child: ListView.builder(
+          itemBuilder: (context, index) => SightCard(sight: mocks[index]),
+          itemCount: mocks.length,
+        ),
       ),
     );
   }
