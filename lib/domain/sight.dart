@@ -1,4 +1,5 @@
 class Sight {
+  String id;
   String name;
   double lat;
   double lon;
@@ -7,6 +8,7 @@ class Sight {
   String type;
 
   Sight({
+    required this.id,
     required this.name,
     required this.lat,
     required this.lon,
