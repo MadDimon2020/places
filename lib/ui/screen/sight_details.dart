@@ -1,16 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/mocks.dart';
+import 'package:places/domain/sight.dart';
+import 'package:places/res/app_colors.dart';
+import 'package:places/res/app_strings.dart';
+import 'package:places/res/const.dart';
 
 class SightDetails extends StatelessWidget {
-  final String sightId;
-  const SightDetails({required this.sightId, super.key});
+  final Sight sight;
+  const SightDetails({required this.sight, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final selectedSight = mocks.firstWhere((sight) => sight.id == sightId);
     final deviceWidth = MediaQuery.of(context).size.width;
-    final calculatedPadding = 16 / 360 * deviceWidth;
     return Scaffold(
       body: Column(
         children: [
@@ -18,19 +18,19 @@ class SightDetails extends StatelessWidget {
             children: [
               Container(
                 width: deviceWidth,
-                height: deviceWidth + 1.1,
+                height: deviceWidth + 1,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      selectedSight.url,
+                      sight.url,
                     ),
                   ),
                 ),
               ),
               Positioned(
-                left: deviceWidth / 22.5,
-                top: deviceWidth / 8,
+                left: AppConstants.sightCardPadding,
+                top: AppConstants.sightCardPadding * 3,
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
@@ -65,25 +65,23 @@ class SightDetails extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: calculatedPadding,
-              top: calculatedPadding * 1.5,
-              right: calculatedPadding,
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(
+              left: AppConstants.sightCardPadding,
+              top: AppConstants.sightCardPadding * 1.5,
+              right: AppConstants.sightCardPadding,
             ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                selectedSight.name,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  height: 1.2,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.left,
+            child: Text(
+              sight.name,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                height: 1.2,
               ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.left,
             ),
           ),
           const SizedBox(
@@ -92,9 +90,11 @@ class SightDetails extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: calculatedPadding),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.sightCardPadding,
+                ),
                 child: Text(
-                  selectedSight.type,
+                  sight.type,
                   style: const TextStyle(
                     fontSize: 14,
                     height: 18 / 14,
@@ -104,7 +104,7 @@ class SightDetails extends StatelessWidget {
                 ),
               ),
               const Text(
-                'закрыто до 09:00',
+                AppStrings.workingHours,
                 style: TextStyle(
                   fontSize: 14,
                   height: 18 / 14,
@@ -114,12 +114,12 @@ class SightDetails extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: calculatedPadding,
-              vertical: calculatedPadding * 1.5,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.sightCardPadding,
+              vertical: AppConstants.sightCardPadding * 1.5,
             ),
             child: Text(
-              selectedSight.details,
+              sight.details,
               textAlign: TextAlign.left,
               style: const TextStyle(
                 fontSize: 14,
@@ -132,10 +132,10 @@ class SightDetails extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
-              left: calculatedPadding,
-              right: calculatedPadding,
-              bottom: calculatedPadding * 2,
+            padding: const EdgeInsets.only(
+              left: AppConstants.sightCardPadding,
+              right: AppConstants.sightCardPadding,
+              bottom: AppConstants.sightCardPadding * 2,
             ),
             child: ElevatedButton(
               onPressed: () {},
@@ -155,13 +155,9 @@ class SightDetails extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  RotatedBox(
-                    quarterTurns: 1,
-                    child: Icon(
-                      Icons.route_rounded,
-                      color: Color(0xFFFFFFFF),
-                      size: 30,
-                    ),
+                  ImageIcon(
+                    AssetImage('assets/images/Go_Icon.png'),
+                    size: 30,
                   ),
                   SizedBox(
                     width: 10,
@@ -181,21 +177,25 @@ class SightDetails extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: calculatedPadding),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.sightCardPadding,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    minWidth: (deviceWidth - calculatedPadding * 2) / 2,
+                    minWidth:
+                        (deviceWidth - AppConstants.sightCardPadding * 2) / 2,
                   ),
                   child: TextButton(
                     onPressed: () {},
                     child: Row(
                       children: [
-                        Icon(
-                          CupertinoIcons.calendar,
+                        ImageIcon(
+                          const AssetImage('assets/images/Calendar_Icon.png'),
                           color: const Color(0xFF7C7E92).withOpacity(0.56),
+                          size: 25,
                         ),
                         const SizedBox(
                           width: 10,
@@ -214,15 +214,17 @@ class SightDetails extends StatelessWidget {
                 ),
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    minWidth: (deviceWidth - calculatedPadding * 2) / 2,
+                    minWidth:
+                        (deviceWidth - AppConstants.sightCardPadding * 2) / 2,
                   ),
                   child: TextButton(
                     onPressed: () {},
                     child: Row(
                       children: const [
-                        Icon(
-                          Icons.favorite_border_rounded,
-                          color: Color(0xFF3B3E5B),
+                        ImageIcon(
+                          AssetImage('assets/images/Heart_Icon.png'),
+                          size: 25,
+                          color: AppColors.baseColor,
                         ),
                         SizedBox(
                           width: 10,

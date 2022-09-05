@@ -2,7 +2,6 @@ import 'package:places/domain/sight.dart';
 
 final List<Sight> mocks = [
   Sight(
-    id: 'uniqueId1',
     name: 'Храм на Крови',
     lat: 56.844376,
     lon: 60.609048,
@@ -13,7 +12,6 @@ final List<Sight> mocks = [
     type: 'храм',
   ),
   Sight(
-    id: 'uniqueId2',
     name: 'Памятник клавиатуре',
     lat: 56.832409,
     lon: 60.607549,
@@ -23,7 +21,6 @@ final List<Sight> mocks = [
     type: 'арт-объект',
   ),
   Sight(
-    id: 'uniqueId3',
     name: 'Памятник Владимиру Высоцкому и Марине Влади',
     lat: 56.8371722,
     lon: 60.6158139,
@@ -33,7 +30,6 @@ final List<Sight> mocks = [
     type: 'памятник',
   ),
   Sight(
-    id: 'uniqueId4',
     name: 'Казанский Кремль',
     lat: 55.796435,
     lon: 49.108244,
