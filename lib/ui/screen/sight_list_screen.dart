@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/mocks.dart';
+import 'package:places/res/app_colors.dart';
+import 'package:places/res/app_strings.dart';
 import 'package:places/ui/screen/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
@@ -19,9 +21,9 @@ class _SightListScreenState extends State<SightListScreen> {
         elevation: 0.0,
         toolbarHeight: 72.0,
         title: const Text(
-          'Список\nинтересных мест',
+          AppStrings.mainPageTitle,
           style: TextStyle(
-            color: Color(0xFF3B3E5B),
+            color: AppColors.baseColor,
             fontWeight: FontWeight.bold,
             fontSize: 32.0,
             height: 1.125,
