@@ -10,123 +10,131 @@ class SightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cardWidth =
+        MediaQuery.of(context).size.width - AppConstants.kSightCardPadding * 2;
+    final cardHeight = cardWidth / 1.5;
     return Padding(
       padding: const EdgeInsets.only(
-        left: AppConstants.sightCardPadding,
-        top: AppConstants.sightCardPadding,
-        right: AppConstants.sightCardPadding,
+        left: AppConstants.kSightCardPadding,
+        top: AppConstants.kSightCardPadding,
+        right: AppConstants.kSightCardPadding,
       ),
-      child: InkWell(
-        onTap: () => _goToDetailsScreen(context: context, sight: sight),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppConstants.sightCardPadding,
-                  ),
-                  width: double.infinity,
-                  height: AppConstants.cardHeight / 2,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        sight.url,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(AppConstants.sightCardPadding),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        sight.type,
-                        style: const TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          height: 1.285,
-                        ),
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        icon: const ImageIcon(
-                          AssetImage('assets/images/Heart_Icon.png'),
-                          size: 24,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              height: AppConstants.cardHeight / 2,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-                color: Color(0xFFF5F5F5),
-              ),
-              child: Column(
+      child: AspectRatio(
+        aspectRatio: 3 / 2,
+        child: InkWell(
+          onTap: () => _goToDetailsScreen(context: context, sight: sight),
+          child: Column(
+            children: [
+              Stack(
                 children: [
                   Container(
-                    alignment: Alignment.centerLeft,
-                    height: 40,
-                    margin: const EdgeInsets.only(
-                      left: AppConstants.sightCardPadding,
-                      top: AppConstants.sightCardPadding,
-                      right: AppConstants.sightCardPadding,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstants.kSightCardPadding,
                     ),
-                    child: Text(
-                      sight.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        height: 1.25,
-                        color: AppColors.baseColor,
+                    height: cardHeight / 2,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          sight.url,
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    height: 18,
-                    margin: const EdgeInsets.only(
-                      left: AppConstants.sightCardPadding,
-                      top: 2,
-                      right: AppConstants.sightCardPadding,
-                      bottom: AppConstants.sightCardPadding,
-                    ),
-                    child: Text(
-                      maxLines: 1,
-                      sight.details,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        height: 1.285,
-                        color: Color(0xFF7C7E92),
-                      ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.all(AppConstants.kSightCardPadding),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          sight.type,
+                          style: const TextStyle(
+                            color: Color(0xFFFFFFFF),
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            height: 1.285,
+                          ),
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          icon: const ImageIcon(
+                            AssetImage('assets/images/Heart_Icon.png'),
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+              Container(
+                height: cardHeight / 2,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
+                  ),
+                  color: Color(0xFFF5F5F5),
+                ),
+                child: Column(
+                  children: [
+                    Flexible(
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        margin: const EdgeInsets.only(
+                          left: AppConstants.kSightCardPadding,
+                          top: AppConstants.kSightCardPadding,
+                          right: AppConstants.kSightCardPadding,
+                        ),
+                        child: Text(
+                          sight.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                            height: 1.25,
+                            color: AppColors.baseColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        margin: const EdgeInsets.only(
+                          left: AppConstants.kSightCardPadding,
+                          top: 2,
+                          right: AppConstants.kSightCardPadding,
+                          bottom: AppConstants.kSightCardPadding,
+                        ),
+                        child: Text(
+                          maxLines: 2,
+                          sight.details,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            height: 1.285,
+                            color: Color(0xFF7C7E92),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
