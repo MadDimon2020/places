@@ -29,8 +29,8 @@ class SightDetails extends StatelessWidget {
                 ),
               ),
               Positioned(
-                left: AppConstants.sightCardPadding,
-                top: AppConstants.sightCardPadding * 3,
+                left: AppConstants.kSightCardPadding,
+                top: AppConstants.kSightCardPadding * 3,
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
@@ -68,9 +68,9 @@ class SightDetails extends StatelessWidget {
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(
-              left: AppConstants.sightCardPadding,
-              top: AppConstants.sightCardPadding * 1.5,
-              right: AppConstants.sightCardPadding,
+              left: AppConstants.kSightCardPadding,
+              top: AppConstants.kSightCardPadding * 1.5,
+              right: AppConstants.kSightCardPadding,
             ),
             child: Text(
               sight.name,
@@ -91,7 +91,7 @@ class SightDetails extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: AppConstants.sightCardPadding,
+                  horizontal: AppConstants.kSightCardPadding,
                 ),
                 child: Text(
                   sight.type,
@@ -115,8 +115,8 @@ class SightDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.sightCardPadding,
-              vertical: AppConstants.sightCardPadding * 1.5,
+              horizontal: AppConstants.kSightCardPadding,
+              vertical: AppConstants.kSightCardPadding * 1.5,
             ),
             child: Text(
               sight.details,
@@ -133,9 +133,9 @@ class SightDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: AppConstants.sightCardPadding,
-              right: AppConstants.sightCardPadding,
-              bottom: AppConstants.sightCardPadding * 2,
+              left: AppConstants.kSightCardPadding,
+              right: AppConstants.kSightCardPadding,
+              bottom: AppConstants.kSightCardPadding * 2,
             ),
             child: ElevatedButton(
               onPressed: () {},
@@ -178,7 +178,7 @@ class SightDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.sightCardPadding,
+              horizontal: AppConstants.kSightCardPadding,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -186,7 +186,7 @@ class SightDetails extends StatelessWidget {
                 ConstrainedBox(
                   constraints: BoxConstraints(
                     minWidth:
-                        (deviceWidth - AppConstants.sightCardPadding * 2) / 2,
+                        (deviceWidth - AppConstants.kSightCardPadding * 2) / 2,
                   ),
                   child: TextButton(
                     onPressed: () {},
@@ -215,7 +215,7 @@ class SightDetails extends StatelessWidget {
                 ConstrainedBox(
                   constraints: BoxConstraints(
                     minWidth:
-                        (deviceWidth - AppConstants.sightCardPadding * 2) / 2,
+                        (deviceWidth - AppConstants.kSightCardPadding * 2) / 2,
                   ),
                   child: TextButton(
                     onPressed: () {},
