@@ -3,8 +3,7 @@ import 'package:places/res/const.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
-  final PreferredSizeWidget? bottom;
-  final Widget? leading;
+  final bool centerTitle;
   final Widget? title;
   final double? toolbarHeight;
 
@@ -14,55 +13,35 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
     Key? key,
     this.backgroundColor,
-    this.bottom,
-    this.leading,
+    this.centerTitle = false,
     this.title,
     this.toolbarHeight,
   })  : preferredSize = Size.fromHeight(
-          (toolbarHeight ?? AppConstants.kCustomAppBarToolBarHeight) +
-              (bottom?.preferredSize.height ?? 0.0),
+          toolbarHeight ?? AppConstants.kCustomAppBarToolBarHeight,
         ),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const leadingWidth = AppConstants.kCustomAppBarToolBarHeight;
     return Container(
+      alignment: centerTitle ? Alignment.center : Alignment.centerLeft,
       decoration: BoxDecoration(
         color: Theme.of(context).appBarTheme.backgroundColor ??
             backgroundColor ??
             Theme.of(context).primaryColor,
       ),
-      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      padding: EdgeInsets.only(
+        left: AppConstants.kSightCardPadding,
+        top: MediaQuery.of(context).padding.top,
+        right: AppConstants.kSightCardPadding,
+      ),
       constraints: BoxConstraints(
         minHeight: preferredSize.height,
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              if (leading != null)
-                ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minWidth: leadingWidth,
-                    maxWidth: leadingWidth,
-                  ),
-                  child: leading,
-                ),
-              if (title != null)
-                Container(
-                  padding: EdgeInsets.only(
-                    left:
-                        leading == null ? AppConstants.kSightCardPadding : 0.0,
-                    right: AppConstants.kSightCardPadding,
-                  ),
-                  child: title,
-                ),
-            ],
+      child: title ??
+          SizedBox(
+            height: preferredSize.height,
           ),
-          if (bottom != null) bottom!,
-        ],
-      ),
     );
   }
 }

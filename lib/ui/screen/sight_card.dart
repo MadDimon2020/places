@@ -54,7 +54,7 @@ class SightCard extends StatelessWidget {
                         Text(
                           sight.type,
                           style: const TextStyle(
-                            color: Color(0xFFFFFFFF),
+                            color: AppColors.whiteColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             height: 1.285,
@@ -66,7 +66,7 @@ class SightCard extends StatelessWidget {
                           icon: const ImageIcon(
                             AssetImage('assets/images/Heart_Icon.png'),
                             size: 24,
-                            color: Colors.white,
+                            color: AppColors.whiteColor,
                           ),
                           onPressed: () {},
                         ),
@@ -82,7 +82,7 @@ class SightCard extends StatelessWidget {
                     bottomLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12),
                   ),
-                  color: Color(0xFFF5F5F5),
+                  color: AppColors.backgroundGrey,
                 ),
                 child: Column(
                   children: [
