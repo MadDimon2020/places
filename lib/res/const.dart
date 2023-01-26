@@ -1,4 +1,4 @@
 class AppConstants {
-  static const sightCardPadding = 16.0;
-  static const cardHeight = 192.0;
+  static const kSightCardPadding = 16.0;
+  static const kCustomAppBarToolBarHeight = 56.0;
 }
